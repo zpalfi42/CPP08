@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"algorithm": "cpp",
+		"iostream": "cpp",
+		"iterator": "cpp",
+		"*.ipp": "cpp"
+	},
+	"C_Cpp.intelliSenseEngineFallback": "enabled",
+	"C_Cpp.errorSquiggles": "enabled"
+}
