@@ -62,7 +62,16 @@
 		"unordered_map": "cpp",
 		"utility": "cpp",
 		"numeric": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"*.tcc": "cpp",
+		"clocale": "cpp",
+		"compare": "cpp",
+		"concepts": "cpp",
+		"deque": "cpp",
+		"memory_resource": "cpp",
+		"random": "cpp",
+		"numbers": "cpp",
+		"ranges": "cpp"
 	},
 	"C_Cpp.intelliSenseEngineFallback": "enabled",
 	"C_Cpp.errorSquiggles": "enabled"

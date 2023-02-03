@@ -22,11 +22,11 @@ public:
 	Span	&operator=( const Span &s );
 
 	template < typename Container >
-	void	fillNumbers(const typename Container::iterator &begin, const typename Container::iterator &end);
+	void		fillNumbers(const typename Container::iterator &begin, const typename Container::iterator &end);
 
-	void	addNumber(int n);
-	int		shortestSpan();
-	int		longestSpan();
+	void		addNumber(int n);
+	long int	shortestSpan();
+	long int	longestSpan();
 
 	class noSpaceLeft: public std::exception
 	{

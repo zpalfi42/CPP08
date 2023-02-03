@@ -35,23 +35,25 @@ void	Span::addNumber( int n )
 	this->_numbers.push_back(n);
 }
 
-int		Span::shortestSpan( void )
+long int		Span::shortestSpan( void )
 {
 	if (this->_numbers.size() < 2)
 		throw (Span::noNumbers());
-	std::vector<int>	diff(this->_numbers.size());
-
-	std::adjacent_difference(this->_numbers.begin(), this->_numbers.end(), diff.begin());
+	std::vector<long int>	lv(this->_numbers.size());
+	for (size_t i = 0; i < this->_numbers.size(); i++)
+		lv[i] = this->_numbers[i];
+	std::vector<long int>	diff(lv.size());
+	std::adjacent_difference(lv.begin(), lv.end(), diff.begin());
 	for (size_t i = 0; i < diff.size(); i++)
 		if (diff[i] < 0)
 			diff[i] = -diff[i];
-	return(*(std::min_element(diff.begin() + 1, diff.end())));
+	return(*(std::min_element(diff.begin() + 1, diff.end() - 1)));
 }
 
-int		Span::longestSpan( void )
+long int		Span::longestSpan( void )
 {
 	if (this->_numbers.size() < 2)
 		throw (Span::noNumbers());
 	this->_numbers.begin();
-	return(*(std::max_element(this->_numbers.begin(), this->_numbers.end())) - *(std::min_element(this->_numbers.begin(), this->_numbers.end())));
+	return((long int)*(std::max_element(this->_numbers.begin(), this->_numbers.end())) - (long int)*(std::min_element(this->_numbers.begin(), this->_numbers.end())));
 }

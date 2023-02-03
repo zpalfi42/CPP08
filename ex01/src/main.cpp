@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <unistd.h>
+#include <limits.h>
 
 int main( void )
 {
@@ -62,4 +63,9 @@ int main( void )
     {
         std::cout << e.what() << '\n';
     }
+
+    Span    span4(2);
+    span4.addNumber(INT_MAX);
+    span4.addNumber(INT_MIN + 1);
+    std::cout << span4.shortestSpan() << std::endl;
 }

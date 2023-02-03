@@ -10,12 +10,6 @@ void	Span::fillNumbers(const typename Container::iterator &begin, const typename
 	{
 		this->addNumber(*i);
 	}
-	
-	// while (begin != end)
-	// {
-	// 	this->addNumber(*begin);
-	// 	begin++;
-	// }
 }
 
 #endif
