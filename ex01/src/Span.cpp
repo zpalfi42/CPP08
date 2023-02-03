@@ -57,3 +57,8 @@ long int		Span::longestSpan( void )
 	this->_numbers.begin();
 	return((long int)*(std::max_element(this->_numbers.begin(), this->_numbers.end())) - (long int)*(std::min_element(this->_numbers.begin(), this->_numbers.end())));
 }
+
+unsigned int	Span::size( void )
+{
+	return (this->_size);
+}

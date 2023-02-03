@@ -28,6 +28,8 @@ public:
 	long int	shortestSpan();
 	long int	longestSpan();
 
+	unsigned int	size( void );
+
 	class noSpaceLeft: public std::exception
 	{
 		public:

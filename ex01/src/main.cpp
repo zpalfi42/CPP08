@@ -6,66 +6,90 @@
 
 int main( void )
 {
-    std::cout << "Example using span with a VECTOR..." << std::endl;
-    std::vector<int>    vec;    
     srand(time(NULL));
+
+    std::cout << "Example using span with a VECTOR..." << std::endl;
+    std::vector<int>    vec;
+    Span    spanVec(10000);
     for (int i = 0; i < 10000; i++)
-    {
         vec.push_back(rand() % 9999);
-    }
+    spanVec.fillNumbers<std::vector <int> >(vec.begin(), vec.end());
 
-    Span    span(10000);
-    span.fillNumbers<std::vector <int> >(vec.begin(), vec.end());
-    std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
-    std::cout << "Longest span: " << span.longestSpan() << std::endl;
+    std::cout << "Shortest span: " << spanVec.shortestSpan() << std::endl;
+    std::cout << "Longest span: " << spanVec.longestSpan() << std::endl << std::endl;
 
-    sleep(2);
-    std::cout << std::endl;
+    sleep(1);
     std::cout << "Example using span with a LIST..." << std::endl;
     std::list<int>  lst;
+    Span    spanLst(10000);
     for (int i = 0; i < 10000; i++)
-    {
         lst.push_back(rand() % 9999);
-    }
+    spanLst.fillNumbers<std::list <int> >(lst.begin(), lst.end());
 
-    Span    span2(10000);
-    span2.fillNumbers<std::list <int> >(lst.begin(), lst.end());
-    std::cout << "Shortest span: " << span2.shortestSpan() << std::endl;
-    std::cout << "Longest span: " << span2.longestSpan() << std::endl << std::endl;
+    std::cout << "Shortest span: " << spanLst.shortestSpan() << std::endl;
+    std::cout << "Longest span: " << spanLst.longestSpan() << std::endl << std::endl;
+
+    std::cout << "Trying to add a number when _numbers is Full: ";
+
+    std::vector<int> fullVec;
+    Span        fullSpan(10000);
+    for (int i = 0; i < 10000; i++)
+        fullVec.push_back(rand() % 9999);
+    fullSpan.fillNumbers<std::vector <int> >(fullVec.begin(), fullVec.end());
+
     try
     {
-        std::cout << "Trying to add a number when _numbers is Full: "; 
-        span2.addNumber(1);
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << e.what() << '\n';
-    }
-    
-    Span    span3(1);
-    span3.addNumber(1);
-    try
-    {
-        std::cout << "Trying to perform a action using a class with no more than 1 number: ";
-        span3.shortestSpan();
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << e.what() << '\n';
-    }
-    
-    try
-    {
-        std::cout << "Trying to perform a action using a class with no more than 1 number: ";
-        span3.longestSpan();
+        fullSpan.addNumber(1);
     }
     catch(const std::exception& e)
     {
         std::cout << e.what() << '\n';
     }
 
-    Span    span4(2);
-    span4.addNumber(INT_MAX);
-    span4.addNumber(INT_MIN + 1);
-    std::cout << span4.shortestSpan() << std::endl;
+    std::cout << "Trying to perform a action using a class with no more than 1 number: ";
+    
+    Span    noNumSpan(0);
+    try
+    {
+        noNumSpan.shortestSpan();
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << '\n';
+    }
+    
+    std::cout << "Trying to perform a action using a class with no more than 1 number: ";
+
+    try
+    {
+        noNumSpan.longestSpan();
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << '\n' << std::endl;
+    }
+
+    std::cout << "Working with INT_MAX and INT_MIN:" << std::endl;
+
+    Span    maxSpan(2);
+    maxSpan.addNumber(INT_MAX);
+    maxSpan.addNumber(INT_MIN);
+
+    std::cout << "Shortest span: " << maxSpan.shortestSpan() << std::endl;
+    std::cout << "Longest span: " << maxSpan.longestSpan() << std::endl;
+
+    std::cout << "Testing copy constructor and = operator..." << std::endl;
+
+    Span    generalSpan(10);
+
+    for (int i = 0; i < 10; i++)
+        generalSpan.addNumber(i);
+    
+    Span    copySpan(generalSpan);
+
+    if (generalSpan.size() != copySpan.size())
+        std::cout << "FAIL" << std::endl;
+    else
+        std::cout << "Sizes are the same!" << std::endl;
+
 }
