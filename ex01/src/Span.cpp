@@ -62,3 +62,11 @@ unsigned int	Span::size( void )
 {
 	return (this->_size);
 }
+
+int				Span::getNum( int i )
+{
+	if (i < (int)this->_size)
+		return (this->_numbers[i]);
+	else
+		return ( 0 );
+}

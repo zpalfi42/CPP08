@@ -29,6 +29,7 @@ public:
 	long int	longestSpan();
 
 	unsigned int	size( void );
+	int				getNum( int i );
 
 	class noSpaceLeft: public std::exception
 	{
