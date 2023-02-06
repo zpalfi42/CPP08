@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"*.ipp": "c",
-		"iostream": "cpp"
-	},
-	"C_Cpp.intelliSenseEngineFallback": "enabled"
-}
