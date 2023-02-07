@@ -8,7 +8,7 @@ int	easyfind(T const container, int n)
 {
 	if (std::find(container.begin(), container.end(), n) == container.end())
 		throw (outOfRange());
-	std::cout << "Found " << n << std::endl;
+	std::cout << "\033[1;32mFound " << n << "\033[0m" << std::endl;
 	return (n);
 }
 

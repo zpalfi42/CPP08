@@ -1,6 +1,7 @@
 #include <Span.hpp>
 #include <vector>
 #include <list>
+#include <deque>
 #include <unistd.h>
 #include <limits.h>
 
@@ -26,31 +27,58 @@ void    testComparation( Span &a, Span &b)
         std::cout << "\033[1;32mNumbers are the same!\033[0m" << std::endl;
 }
 
+void    testContainers( void )
+{
+    {
+        std::cout << "\033[1;34mExample using span with a VECTOR...\033[0m" << std::endl;
+        std::vector<int>    vec;
+        Span    spanVec(10000);
+        for (int i = 0; i < 10000; i++)
+            vec.push_back(rand() % 9999);
+        spanVec.fillNumbers<std::vector <int> >(vec.begin(), vec.end());
+
+        std::cout << "Shortest span: " << spanVec.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << spanVec.longestSpan() << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    {
+        sleep(1); // This sleep is for changing the rand() returns.
+        std::cout << "\033[1;34mExample using span with a LIST...\033[0m" << std::endl;
+        std::list<int>  lst;
+        Span    spanLst(10000);
+        for (int i = 0; i < 10000; i++)
+            lst.push_back(rand() % 9999);
+        spanLst.fillNumbers<std::list <int> >(lst.begin(), lst.end());
+
+        std::cout << "Shortest span: " << spanLst.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << spanLst.longestSpan() << std::endl;
+    }
+
+    std::cout << std::endl;
+    
+    {
+        sleep(1); // This sleep is for changing the rand() returns.
+        std::cout << "\033[1;34mExample using span with a LIST...\033[0m" << std::endl;
+        std::deque<int>  lst;
+        Span    spanLst(10000);
+        for (int i = 0; i < 10000; i++)
+            lst.push_back(rand() % 9999);
+        spanLst.fillNumbers<std::deque <int> >(lst.begin(), lst.end());
+
+        std::cout << "Shortest span: " << spanLst.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << spanLst.longestSpan() << std::endl << std::endl;
+    }
+}
+
 int main( void )
 {
     srand(time(NULL));
 
-    std::cout << "\033[1;34mExample using span with a VECTOR...\033[0m" << std::endl;
     std::vector<int>    vec;
-    Span    spanVec(10000);
     for (int i = 0; i < 10000; i++)
-        vec.push_back(rand() % 9999);
-    spanVec.fillNumbers<std::vector <int> >(vec.begin(), vec.end());
-
-    std::cout << "Shortest span: " << spanVec.shortestSpan() << std::endl;
-    std::cout << "Longest span: " << spanVec.longestSpan() << std::endl << std::endl;
-
-    sleep(1); // This sleep is for changing the rand() returns.
-    std::cout << "\033[1;34mExample using span with a LIST...\033[0m" << std::endl;
-    std::list<int>  lst;
-    Span    spanLst(10000);
-    for (int i = 0; i < 10000; i++)
-        lst.push_back(rand() % 9999);
-    spanLst.fillNumbers<std::list <int> >(lst.begin(), lst.end());
-
-    std::cout << "Shortest span: " << spanLst.shortestSpan() << std::endl;
-    std::cout << "Longest span: " << spanLst.longestSpan() << std::endl << std::endl;
-
+            vec.push_back(rand() % 9999);
     std::cout << "\033[1;34mTrying to FILL a number when _numbers is Full: \033[0m" << std::endl;
     Span        fullSpan(10000);
     fullSpan.fillNumbers<std::vector <int> >(vec.begin(), vec.end());
